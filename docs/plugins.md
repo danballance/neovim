@@ -32,7 +32,7 @@ Managed by [lazy.nvim](https://github.com/folke/lazy.nvim). Each plugin has its 
 
 **neo-tree** (floating window): Opens as a centered float (80% height, 50% width) instead of a sidebar, keeping the editing area uncluttered.
 
-**treesitter** (Nix-provided parsers): Parsers are built by Nix via `nvim-treesitter.withPlugins`. The `nvim` wrapper exports a `NIX_TS_PARSERS` env var pointing to the store path, and `init.lua` passes it to lazy.nvim's `performance.rtp.paths` so the path survives lazy.nvim's rtp reset. No runtime compilation, `build` step, or `gcc` required.
+**treesitter** (Nix-provided parsers): Parsers are built by Nix via `nvim-treesitter.withPlugins`. The `nvim` wrapper exports a `NIX_TS_PARSERS` env var pointing to the store path, and `lazy_bootstrap.lua` passes it to lazy.nvim's `performance.rtp.paths` so the path survives lazy.nvim's rtp reset. No runtime compilation, `build` step, or `gcc` required.
 
 ## Managing Plugins
 

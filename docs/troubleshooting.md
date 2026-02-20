@@ -74,11 +74,11 @@ Check `:StartupLog` for oil-related errors and `:Lazy` to confirm oil.nvim is lo
 
 ### Treesitter parsers missing
 
-Parsers are provided by Nix via `nvim-treesitter.withPlugins`. The `nvim` wrapper exports `NIX_TS_PARSERS` pointing to the parser store path, and `init.lua` passes it to lazy.nvim's `performance.rtp.paths` so the path survives lazy.nvim's rtp reset. If parsers are missing:
+Parsers are provided by Nix via `nvim-treesitter.withPlugins`. The `nvim` wrapper exports `NIX_TS_PARSERS` pointing to the parser store path, and `lazy_bootstrap.lua` passes it to lazy.nvim's `performance.rtp.paths` so the path survives lazy.nvim's rtp reset. If parsers are missing:
 
 1. Check the env var is set: `echo $NIX_TS_PARSERS` — should print a `/nix/store/...-treesitter-parsers` path
 2. Check `:set rtp?` — should include the same `/nix/store/...-treesitter-parsers` path
-3. If the env var is set but the rtp path is missing, lazy.nvim's `performance.rtp.paths` may not be configured — check `init.lua`
+3. If the env var is set but the rtp path is missing, lazy.nvim's `performance.rtp.paths` may not be configured — check `lazy_bootstrap.lua`
 4. Run `:checkhealth utils` — all 8 parsers should show OK
 5. If parsers fail to load, there may be an ABI mismatch between the nightly binary and nixpkgs' tree-sitter C library. Check `:messages` for dlopen errors.
 

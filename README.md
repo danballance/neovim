@@ -20,10 +20,11 @@ On NixOS, this config is designed to be used with a Nix wrapper that provides th
 
 ```
 nvim-nightly/
-├── init.lua                    # Bootstrap lazy.nvim, load modules via logger
+├── init.lua                    # Set leader, load modules via logger helper
 ├── lazy-lock.json              # Plugin version lockfile
 ├── docs/                       # This documentation
 └── lua/
+    ├── lazy_bootstrap.lua      # Bootstrap lazy.nvim & setup plugins
     ├── core/
     │   ├── options.lua         # Editor settings (line numbers, tabs, etc.)
     │   ├── keymaps.lua         # Global keymaps (diagnostic navigation)
@@ -50,18 +51,17 @@ nvim-nightly/
 
 ```
 1. vim.g.mapleader = " "          (before lazy.nvim)
-2. Bootstrap lazy.nvim            (clone if missing)
-3. require("utils.logger")        (enables startup tracing)
-4. core.options                   (editor settings)
-5. core.keymaps                   (global keymaps)
-6. core.autocmds                  (LSP autocommands)
-7. lazy.setup("plugins")          (all plugin specs loaded)
-8. lsp/init.lua                   (server configs, vim.lsp.enable)
-9. lsp/diagnostics.lua            (diagnostic display)
-10. colorscheme catppuccin        (apply theme)
+2. require("utils.logger")        (enables startup tracing)
+3. core.options                   (editor settings)
+4. core.keymaps                   (global keymaps)
+5. core.autocmds                  (LSP autocommands)
+6. lazy_bootstrap                 (bootstrap lazy.nvim + load plugins)
+7. lsp/init.lua                   (server configs, vim.lsp.enable)
+8. lsp/diagnostics.lua            (diagnostic display)
+9. colorscheme catppuccin         (apply theme)
 ```
 
-Every module load (steps 4-9) is wrapped in `logger.module()`, which uses `xpcall` with `debug.traceback`. If any module fails, the error and full traceback are logged to `startup.log` and the remaining modules still load.
+Every module load (steps 3-8) is wrapped in `logger.module()` via a `load()` helper, which uses `xpcall` with `debug.traceback`. If any module fails, the error and full traceback are logged to `startup.log` and the remaining modules still load.
 
 ## NixOS-Specific Design
 
