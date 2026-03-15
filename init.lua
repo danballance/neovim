@@ -1,5 +1,6 @@
 -- Leader must be set before lazy.nvim
 vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
 -- Logger (available for all subsequent modules)
 local log = require("utils.logger")
@@ -18,7 +19,6 @@ load("lazy_bootstrap")
 
 -- LSP configuration (after plugins so blink.cmp is available)
 load("lsp")
-load("lsp.diagnostics")
 
 -- Colorscheme
 local ok, _ = pcall(vim.cmd.colorscheme, "catppuccin")
