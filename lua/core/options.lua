@@ -9,6 +9,8 @@ vim.opt.smartindent = true
 vim.opt.autoindent = true -- Keep identation from previous line
 -- Enable break indent
 vim.opt.breakindent = true
+-- Wrap at word boundaries, not mid-word
+vim.o.linebreak = true
 
 vim.g.have_nerd_font = true
 -- Enable mouse mode, can be useful for resizing splits for example!
