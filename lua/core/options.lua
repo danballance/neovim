@@ -4,6 +4,11 @@ vim.o.swapfile = false
 vim.o.tabstop = 2
 vim.o.softtabstop = 2
 vim.o.shiftwidth = 2
+vim.opt.smarttab = true
+vim.opt.smartindent = true
+vim.opt.autoindent = true -- Keep identation from previous line
+-- Enable break indent
+vim.opt.breakindent = true
 
 vim.g.have_nerd_font = true
 -- Enable mouse mode, can be useful for resizing splits for example!
