@@ -36,6 +36,16 @@ vim.lsp.config("rust_analyzer", {
 	root_markers = { "Cargo.toml", ".git" },
 })
 
+vim.lsp.config("ts_ls", {
+	cmd = { "typescript-language-server", "--stdio" },
+	filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
+	root_markers = { "package.json", "tsconfig.json", "jsconfig.json", ".git" },
+	on_attach = function(client)
+		client.server_capabilities.documentFormattingProvider = false
+		client.server_capabilities.documentRangeFormattingProvider = false
+	end,
+})
+
 vim.lsp.config("pylsp", {
 	cmd = { "pylsp" },
 	filetypes = { "python" },
@@ -44,6 +54,10 @@ vim.lsp.config("pylsp", {
 
 if vim.fn.executable("pylsp") == 1 then
 	vim.lsp.enable("pylsp")
+end
+
+if vim.fn.executable("typescript-language-server") == 1 then
+	vim.lsp.enable("ts_ls")
 end
 
 if vim.fn.executable("rust_analyzer") == 1 then

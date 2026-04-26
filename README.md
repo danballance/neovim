@@ -67,7 +67,7 @@ Every module load (steps 3-8) is wrapped in `logger.module()` via a `load()` hel
 
 This config is built for NixOS. Key differences from a typical Neovim setup:
 
-- **No Mason** — LSP server binaries (`lua-language-server`, `nil`, `rust-analyzer`) are installed via NixOS packages. `pylsp` (Python) comes from each project's dev environment (`nix develop` / `devenv`)
+- **No Mason** — LSP server binaries (`lua-language-server`, `nil`, `rust-analyzer`, `typescript-language-server`, `pylsp`) are installed via NixOS packages
 - **nixpkgs-fmt** — used as the Nix formatter (configured in nil_ls)
 - **flake.nix root marker** — nil_ls recognizes `flake.nix` as a project root
 - **Nix-provided treesitter parsers** — parsers are built by Nix via `nvim-treesitter.withPlugins`, exported as `NIX_TS_PARSERS` env var by the `nvim` wrapper, and preserved through lazy.nvim's rtp reset via `performance.rtp.paths`. No runtime compilation needed.

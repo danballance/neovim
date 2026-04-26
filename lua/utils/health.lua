@@ -17,9 +17,15 @@ M.check = function()
     { "lua-language-server", "Lua LSP" },
     { "nil", "Nix LSP" },
     { "rust-analyzer", "Rust LSP" },
-    { "pylsp", "Python LSP (from project dev env)" },
-    { "gcc", "C compiler (optional)" },
+    { "python3", "Python 3 host" },
+    { "pylsp", "Python LSP" },
+    { "node", "Node.js runtime" },
+    { "typescript-language-server", "TypeScript LSP" },
+    { "tsc", "TypeScript compiler" },
+    { "gcc", "C compiler (for native plugin builds)" },
     { "nixpkgs-fmt", "Nix formatter" },
+    { "prettierd", "Prettier daemon" },
+    { "prettier", "Prettier formatter" },
   }
   for _, bin in ipairs(binaries) do
     if vim.fn.executable(bin[1]) == 1 then
@@ -35,7 +41,24 @@ M.check = function()
   else
     vim.health.start("Treesitter Parsers (runtime-installed)")
   end
-  local expected_parsers = { "lua", "nix", "rust", "python", "vim", "vimdoc", "markdown", "markdown_inline" }
+  local expected_parsers = {
+    "lua",
+    "nix",
+    "rust",
+    "python",
+    "vim",
+    "vimdoc",
+    "markdown",
+    "markdown_inline",
+    "yaml",
+    "html",
+    "css",
+    "scss",
+    "javascript",
+    "typescript",
+    "tsx",
+    "json",
+  }
   for _, lang in ipairs(expected_parsers) do
     local parser_ok, _ = pcall(vim.treesitter.language.inspect, lang)
     if parser_ok then

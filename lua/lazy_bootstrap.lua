@@ -19,6 +19,7 @@ vim.opt.rtp:prepend(lazypath)
 local nix_ts = vim.env.NIX_TS_PARSERS
 
 require("lazy").setup("plugins", {
+  rocks = { enabled = false },
   install = { colorscheme = { "catppuccin" } },
   performance = {
     rtp = {

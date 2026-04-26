@@ -4,6 +4,8 @@ return {
 	---@module 'render-markdown'
 	---@type render.md.UserConfig
 	opts = {
-		render_modes = { 'n', 'c', 't' }
+		render_modes = { 'n', 'c', 't' },
+		html = { enabled = false },
+		latex = { enabled = false },
 	},
 }
