@@ -25,6 +25,25 @@ return {
 			},
 		},
 	},
+	config = function(_, opts)
+		local oil = require("oil")
+		oil.setup(opts)
+
+		-- When Neovim is started with a directory argument (`nvim .`), oil can
+		-- hijack the directory buffer before `VimEnter` but not render it. Re-open
+		-- the oil URL once startup is complete so the project tree is populated.
+		vim.api.nvim_create_autocmd("VimEnter", {
+			group = vim.api.nvim_create_augroup("OilStartupDirectory", { clear = true }),
+			callback = function()
+				vim.schedule(function()
+					local name = vim.api.nvim_buf_get_name(0)
+					if name:match("^oil://") and vim.bo.filetype == "" then
+						oil.open(name)
+					end
+				end)
+			end,
+		})
+	end,
 	keys = {
 		{ "-", "<CMD>Oil<CR>", desc = "Open parent directory" },
 	},
