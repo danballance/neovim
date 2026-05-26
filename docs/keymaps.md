@@ -34,6 +34,7 @@ Defined in `lua/core/autocmds.lua` via `LspAttach` autocommand. Only active in b
 | Key | Mode | Action | Plugin | Defined in |
 |-----|------|--------|--------|------------|
 | `-` | n | `:Oil` | oil.nvim | `lua/plugins/oil.lua` |
+| `<leader>c` | n, i | Toggle Google Chirp 3 speech-to-text | chirp-stt | `lua/plugins/chirp_stt.lua` |
 | `<leader>e` | n | `:Neotree float toggle` | neo-tree | `lua/plugins/neotree.lua` |
 | `<leader>o` | n | `:Outline` | outline.nvim | `lua/plugins/outline.lua` |
 | `<leader>?` | n | Show buffer-local keymaps | which-key | `lua/plugins/whichkey.lua` |

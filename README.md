@@ -25,12 +25,15 @@ nvim-nightly/
 ├── docs/                       # This documentation
 └── lua/
     ├── lazy_bootstrap.lua      # Bootstrap lazy.nvim & setup plugins
+    ├── chirp_stt.lua           # Minimal Neovim wrapper for Google Chirp STT
+    ├── chirp_stt_worker.py     # Python microphone + Google Speech worker
     ├── core/
     │   ├── options.lua         # Editor settings (line numbers, tabs, etc.)
     │   ├── keymaps.lua         # Global keymaps (diagnostic navigation)
     │   └── autocmds.lua        # LspAttach/LspDetach autocommands
     ├── plugins/
     │   ├── catppuccin.lua      # Colorscheme
+    │   ├── chirp_stt.lua       # Local lazy.nvim spec for Chirp STT
     │   ├── oil.lua             # File explorer (replaces netrw)
     │   ├── fzf.lua             # Fuzzy finder
     │   ├── neotree.lua         # Project tree (floating)
@@ -81,6 +84,7 @@ This config also works on non-NixOS machines:
 
 ## Further Reading
 
+- [Chirp STT](docs/chirp-stt.md) — getting started for `lua/chirp_stt.lua`
 - [Keymaps](docs/keymaps.md) — complete keymap reference
 - [LSP](docs/lsp.md) — language server setup and debugging
 - [Plugins](docs/plugins.md) — plugin list and configuration

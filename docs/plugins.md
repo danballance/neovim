@@ -7,6 +7,7 @@ Managed by [lazy.nvim](https://github.com/folke/lazy.nvim). Each plugin has its 
 | Plugin | Repo | Purpose | Loading | Config File |
 |--------|------|---------|---------|-------------|
 | catppuccin | `catppuccin/nvim` | Colorscheme | `priority = 1000` | `plugins/catppuccin.lua` |
+| chirp-stt | local config | Realtime speech-to-text via Google Chirp 3 | `lazy = false` | `plugins/chirp_stt.lua` |
 | oil.nvim | `stevearc/oil.nvim` | File explorer (replaces netrw) | `lazy = false` | `plugins/oil.lua` |
 | fzf-lua | `ibhagwan/fzf-lua` | Fuzzy finder | default (lazy) | `plugins/fzf.lua` |
 | neo-tree | `nvim-neo-tree/neo-tree.nvim` | Project tree (floating) | on `<leader>e` | `plugins/neotree.lua` |
@@ -21,6 +22,25 @@ Managed by [lazy.nvim](https://github.com/folke/lazy.nvim). Each plugin has its 
 - `nvim-tree/nvim-web-devicons` — file icons (used by neo-tree, oil)
 - `MunifTanjim/nui.nvim` — UI component library (used by neo-tree)
 - `nvim-lua/plenary.nvim` — Lua utility library (used by neo-tree)
+
+### External Runtime Requirements
+
+- Launch Neovim from `nix develop ~/.nixos#python-gcp`
+- `python3`
+- Python packages: `pyaudio`, `google-cloud-speech`
+- `GOOGLE_CLOUD_PROJECT` environment variable
+- optional `GOOGLE_CLOUD_LOCATION` override for the STT region (`eu` by default)
+- Application Default Credentials via `gcloud auth application-default login`
+
+### chirp-stt
+
+The local Chirp STT plugin is split across:
+
+- `lua/plugins/chirp_stt.lua` — keymap registration
+- `lua/chirp_stt.lua` — Neovim job control and text insertion
+- `lua/chirp_stt_worker.py` — microphone capture and Google API client
+
+See [Chirp STT](chirp-stt.md) for setup and usage.
 
 ## Notable Configuration Choices
 
